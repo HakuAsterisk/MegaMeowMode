@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MeowMode.bundle.scp.css",
+      "PackagePath": "staticwebassets\\MeowMode.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MeowMode.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MeowMode.props",
+      "PackagePath": "build\\MeowMode.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MeowMode.props",
+      "PackagePath": "buildMultiTargeting\\MeowMode.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MeowMode.props",
+      "PackagePath": "buildTransitive\\MeowMode.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
