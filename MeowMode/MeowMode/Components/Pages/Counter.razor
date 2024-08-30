@@ -5,15 +5,75 @@
 
 <h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
+<!-- this displays your amount of Coins -->
+<p role="status">MeowCOIN: @Coin</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<!-- This makes the main clicking button for Coins -->
+<button class="image-button" @onclick="IncrementCount">
+    <img src="images/glorp.jpg" alt="Button Image" class="button-image" />
+</button>
 
+<!-- Here is Div class for the upgrade buttons so they go to up right corner and also call some methods for upgrades.
+    you can check the css side from wwwroot/app.css -->
+<div class="button-container">
+    @if (unitycatlevel >= 25 && !unitycatactivate)
+    {
+        <button class="btn btn-primary" @onclick="Powerups">2x Clicks <br>Cost: 10K</button>
+    }
+
+    <button id = "Unitycatlevelbutton" class="btn btn-danger" @onclick="unitycat">Coin: @UnityCatCost <br> Level: @unitycatlevel</button>
+</div>
+
+<!-- Here are all the main methods and code -->
 @code {
-    private int currentCount = 0;
+    // double for COINS //
+    private double Coin = 0;
 
+    // double for clicks //
+    private double Click = 1;
+
+    // Here are all of the upgrade costs //
+    private double UnityCatCost = 10;
+
+    //-----------------------------------------//
+    // Here are all the Upgrade levels //
+    private int unitycatlevel = 0;
+
+    // this bool is for the 2x clicks power up, so the button will disapear when clicked/bought ones //
+    private bool unitycatactivate = false;
+
+    // Simple int for the click multiplier //
+    private int clickMultiplier = 1;
+
+    private bool IcanAffordUnitycat = true;
+
+    // Method for how many clicks u get from single click //
     private void IncrementCount()
     {
-        currentCount++;
+        Coin += Click * clickMultiplier;
+    }
+
+    // method for the Unity cat upgrade. //
+    private void unitycat()
+    {
+        if (Coin >= UnityCatCost) {
+            Coin -= UnityCatCost;
+            UnityCatCost = Math.Round((UnityCatCost * 1.2));
+            unitycatlevel++;
+            Click++;
+        }
+    }
+
+    // Method for the 2x power up //
+    private void Powerups() {
+        if (Coin >= 10000) {
+        // here the click multiplier is changed to 2 so it will always give u 2x coins //
+        clickMultiplier = 2;
+        // this is for the powerup button to disapear when bought //
+        unitycatactivate = true;
+        }
+        else {
+            
+        }
     }
 }

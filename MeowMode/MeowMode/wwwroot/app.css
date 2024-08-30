@@ -49,3 +49,22 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+
+.button-container {
+    position: absolute; /* Fixed position to stay in the corner even when scrolling */
+    top: 100px;       /* Adjust the top spacing as needed */
+    right: 10px;     /* Adjust the right spacing as needed */
+    display: flex;
+    gap: 10px;       /* Space between the buttons */
+}
+
+.btn {
+    margin-left: auto; /* Push the buttons to the right within the container */
+}
+
+.coin-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
