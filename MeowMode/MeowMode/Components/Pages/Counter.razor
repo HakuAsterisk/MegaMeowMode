@@ -23,9 +23,28 @@
 
     <button id = "Unitycatlevelbutton" class="btn btn-danger" @onclick="unitycat">Coin: @UnityCatCost <br> Level: @unitycatlevel</button>
 </div>
+<div class="button-container">
+    @if (auto_click >= 1)
+    {
+        <button class="btn btn-primary" @onclick="StartAutoIncrement">Auto mining <p>Cost = @Auto_mining counts</p></button>
+    }
+    else {
+        <button class="btn btn-primary" @onclick="StartAutoIncrement">Mining incres <p>Cost = @autocost counts</p></button>
+    }
+    </div>
 
 <!-- Here are all the main methods and code -->
 @code {
+    // auto incres
+    private bool autoIncrement = false;
+
+    //auto score cost
+    private int Auto_mining = 10000;
+    private int autocost = 0;
+
+    //auto mining clicks
+    private int auto_click = 0;
+
     // double for COINS //
     private double Coin = 0;
 
@@ -72,8 +91,35 @@
         // this is for the powerup button to disapear when bought //
         unitycatactivate = true;
         }
-        else {
-            
+        else {  
         }
+    }
+
+    //Method for auto add coins
+    private async Task StartAutoIncrement()
+    {
+        if (Coin >= Auto_mining && auto_click < 1)
+        {
+            autoIncrement = true;
+            auto_click += 1;
+            Coin -= Auto_mining;
+            autocost += 100;
+
+            while (autoIncrement)
+            {
+                Coin += auto_click; // Increment the count
+                StateHasChanged(); // Refresh the UI
+                await Task.Delay(1000); // Wait for 1 second asynchronously
+            }
+        }
+        else if(Coin >= autocost && auto_click >= 1){
+            Coin -= autocost;
+            auto_click += 1;
+            autocost += 100;
+        }
+    }
+    private void StopAutoIncrement()
+    {
+        autoIncrement = false; // Stop auto increment
     }
 }
