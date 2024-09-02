@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MeowMode", "MeowMode", "{4AAFAFB2-72D2-416E-B418-5F4FF3A74776}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeowMode", "MeowMode\MeowMode\MeowMode.csproj", "{476F24E7-65D5-45F3-9418-680B16B3E06F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{476F24E7-65D5-45F3-9418-680B16B3E06F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{476F24E7-65D5-45F3-9418-680B16B3E06F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{476F24E7-65D5-45F3-9418-680B16B3E06F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{476F24E7-65D5-45F3-9418-680B16B3E06F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{476F24E7-65D5-45F3-9418-680B16B3E06F} = {4AAFAFB2-72D2-416E-B418-5F4FF3A74776}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7696821A-8899-49D8-8314-E13642BFDB38}
+	EndGlobalSection
+EndGlobal

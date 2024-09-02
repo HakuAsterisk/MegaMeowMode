@@ -1,0 +1,52 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+<p role="status">Increse in second: @a</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="StartAutoIncrement">Auto increse (+1) <p>Cost = @b counts</p></button>
+
+@code {
+    private int currentCount = 0;
+    private int a = 0;
+    private int b = 10;
+    private bool autoIncrement = false; // To control the auto increment state
+
+    private void IncrementCount()
+    {
+        currentCount ++;
+    }
+
+    private async Task StartAutoIncrement()
+    {
+        if (currentCount >= b && a < 1)
+        {
+            autoIncrement = true;
+            a += 1;
+            currentCount -= b;
+            b += 10;
+
+            while (autoIncrement)
+            {
+                currentCount += a; // Increment the count
+                StateHasChanged(); // Refresh the UI
+                await Task.Delay(1000); // Wait for 1 second asynchronously
+            }
+        }
+        else if(currentCount >= b && a >= 1){
+            currentCount -= b;
+            a += 1;
+            b += 10;
+        }
+    }
+
+    private void StopAutoIncrement()
+    {
+        autoIncrement = false; // Stop auto increment
+    }
+}
