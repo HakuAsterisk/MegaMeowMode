@@ -24,7 +24,7 @@
     <button id = "Unitycatlevelbutton" class="btn btn-danger" @onclick="unitycat">Coin: @UnityCatCost <br> Level: @unitycatlevel</button>
 </div>
 <div class="button-container">
-    @if (auto_click >= 1)
+    @if (auto_click < 1)
     {
         <button class="btn btn-primary" @onclick="StartAutoIncrement">Auto mining <p>Cost = @Auto_mining counts</p></button>
     }
