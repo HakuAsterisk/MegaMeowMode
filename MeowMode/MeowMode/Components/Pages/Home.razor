@@ -1,19 +1,45 @@
-@page "/"
+﻿@page "/"
 @rendermode InteractiveServer
 @inject IJSRuntime JSRuntime
-<script src="site.js"></script>
-<audio id="meowSound" src="sounds/meow.wav"></audio>
 
-<PageTitle>Home</PageTitle>
+<html>
 
-<h1>Hello, world!</h1>
+<body>
+    <PageTitle>Home</PageTitle>
 
-<button class="btn btn-primary" @onclick="PlayMeow">Play Meow</button>
+    <h1>MEGAMEOWMODE!!!!</h1>
+
+    <!-- Alla oleva koodi on pelissä oleva kissa -nappi. Se toimii javalla
+        The code underneath is the cat button. It runs on java-->
+    <div>
+        <button id="switchButton">
+            <img id="switchCat" src="images/cat.png">
+            <img id="pressedCat" src="images/cat-pressed.png" style="display: none;">
+        </button>
+        <!-- Tässä alla olevassa koodissa on kissan toiminta, eli kun klikataan kissaa, se hakkaa pöytää.
+        The code underneath is how the cat works, so when the cat is clicked it taps the table.-->
+        <script>
+            var clickButton = document.getElementById('switchButton');
+            var switchCat = document.getElementById('switchCat');
+            var pressedCat = document.getElementById('pressedCat');
+            // Tämä koodinpätkä vaikuttaa siihen miltä kissa näyttää. NONE tarkoittaa sitä, että "alkuperäinen" kissa häviää
+            //ja "block" tarkoittaa sitä, että kissa jolla on tassu alhaalla tulee näkyviin.
+            //this bit of code makes it so the cat with its paw up disappears and displays the cat with the paw down
+            clickButton.onmousedown = function () {
+                switchCat.style.display = "none";
+                pressedCat.style.display = "block";
+            }
+            //tämä koodinpätkä tekee taas päinvastaisen
+            //and this bit of code is the reverse
+
+            clickButton.onmouseup = function () {
+                switchCat.style.display = "block";
+                pressedCat.style.display = "none";
+            }
 
 
-@code {
-    private async Task PlayMeow()
-    {
-        await JSRuntime.InvokeVoidAsync("playSound", "meowSound");
-    }
-}
+        </script>
+    </div>
+</body>
+
+</html>
