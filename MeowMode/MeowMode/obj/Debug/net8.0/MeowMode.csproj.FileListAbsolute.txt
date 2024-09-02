@@ -27,6 +27,3 @@ C:\Users\35844\Desktop\MeowMode\MeowMode\obj\Debug\net8.0\refint\MeowMode.dll
 C:\Users\35844\Desktop\MeowMode\MeowMode\obj\Debug\net8.0\MeowMode.pdb
 C:\Users\35844\Desktop\MeowMode\MeowMode\obj\Debug\net8.0\MeowMode.genruntimeconfig.cache
 C:\Users\35844\Desktop\MeowMode\MeowMode\obj\Debug\net8.0\ref\MeowMode.dll
-C:\Users\Olli\Desktop\git-clones\MegaMeowMode\MeowMode\MeowMode\obj\Debug\net8.0\MeowMode.dll
-C:\Users\Olli\Desktop\git-clones\MegaMeowMode\MeowMode\MeowMode\obj\Debug\net8.0\refint\MeowMode.dll
-C:\Users\Olli\Desktop\git-clones\MegaMeowMode\MeowMode\MeowMode\obj\Debug\net8.0\MeowMode.pdb

@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
+      "Id": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\site.js",
+      "PackagePath": "staticwebassets\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\sounds\\meow.wav",
+      "PackagePath": "staticwebassets\\sounds\\meow.wav"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MeowMode.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

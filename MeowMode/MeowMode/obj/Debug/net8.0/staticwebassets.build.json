@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9WhzWf4kWnwiE7vOfxzbgQNywbt89+vRNs1n4aizFHI=",
+  "Hash": "NVXeh2h7ivDK2PYEgmeKcxDd1EI6t5jjGKzp3xOhOiw=",
   "Source": "MeowMode",
   "BasePath": "_content/MeowMode",
   "Mode": "Default",
@@ -129,6 +129,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\site.js",
+      "SourceId": "MeowMode",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\",
+      "BasePath": "_content/MeowMode",
+      "RelativePath": "site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\sounds\\meow.wav",
+      "SourceId": "MeowMode",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\",
+      "BasePath": "_content/MeowMode",
+      "RelativePath": "sounds/meow.wav",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\sounds\\meow.wav"
     }
   ]
 }
