@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8bfHcIax69AwA9dG5qvvGQ91v7Dzs2AmvDnFfbaWR9w=",
+  "Hash": "9WhzWf4kWnwiE7vOfxzbgQNywbt89+vRNs1n4aizFHI=",
   "Source": "MeowMode",
   "BasePath": "_content/MeowMode",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "MeowMode\\wwwroot",
       "Source": "MeowMode",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\",
       "BasePath": "_content/MeowMode",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\bundle\\MeowMode.styles.css",
+      "Identity": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\bundle\\MeowMode.styles.css",
       "SourceId": "MeowMode",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/MeowMode",
       "RelativePath": "MeowMode.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\bundle\\MeowMode.styles.css"
+      "OriginalItemSpec": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\bundle\\MeowMode.styles.css"
     },
     {
-      "Identity": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MeowMode.bundle.scp.css",
+      "Identity": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MeowMode.bundle.scp.css",
       "SourceId": "MeowMode",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/MeowMode",
       "RelativePath": "MeowMode.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MeowMode.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\MeowMode.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\app.css",
+      "Identity": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\app.css",
       "SourceId": "MeowMode",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\",
       "BasePath": "_content/MeowMode",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "MeowMode",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\",
       "BasePath": "_content/MeowMode",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "MeowMode",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\",
       "BasePath": "_content/MeowMode",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\favicon.png",
+      "Identity": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\favicon.png",
       "SourceId": "MeowMode",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\wwwroot\\",
       "BasePath": "_content/MeowMode",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -129,63 +129,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
-    },
-    {
-      "Identity": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\images\\cat-pressed.png",
-      "SourceId": "MeowMode",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\",
-      "BasePath": "_content/MeowMode",
-      "RelativePath": "images/cat-pressed.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\cat-pressed.png"
-    },
-    {
-      "Identity": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\images\\cat.png",
-      "SourceId": "MeowMode",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\",
-      "BasePath": "_content/MeowMode",
-      "RelativePath": "images/cat.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\cat.png"
-    },
-    {
-      "Identity": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\site.js",
-      "SourceId": "MeowMode",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\paavo\\OneDrive\\Tiedostot\\GitHub\\MegaMeowMode\\MeowMode\\MeowMode\\wwwroot\\",
-      "BasePath": "_content/MeowMode",
-      "RelativePath": "site.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\site.js"
     }
   ]
 }
