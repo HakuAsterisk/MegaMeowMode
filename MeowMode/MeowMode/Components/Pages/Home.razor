@@ -10,11 +10,15 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <PageTitle>Home</PageTitle>
+
+
 <div class="m-4">
     <button class="btn btn-info" id="saveButton" style="height: 58px;"><img id="saveimage"
             src="images/saves.png"></button>
     <p>@alert</p>
 </div>
+
+
 
 <div id="saveDiv">
     <button id="close" class="btn btn-danger">X</button>
@@ -47,6 +51,14 @@
         </table>
     }
 </div>
+@if (Mainmusic == false)
+{
+<button class="btn btn-danger" @onclick="PlayMainsound">♪</button>
+}
+@if (Mainmusic == true)
+{
+    <button class="btn btn-success" @onclick="StopMainsound">♪</button>
+}
 
 <script>
     $(document).ready(function () {
@@ -61,6 +73,8 @@
 </script>
 
 <audio id="meowSound" src="sounds/meow.wav"></audio>
+<audio id="winsound" src="sounds/winmusic.wav"></audio>
+<audio id="mainsound" src="sounds/mainmusic.wav"></audio>
 
 <button class="btn btn-primary" @onclick="PlayMeow">Play Meow</button>
 
@@ -203,9 +217,9 @@
 </script>
 
 
-
 @code {
 
+    bool Mainmusic = false;
     bool Godmodeactive = true;
     bool CanUsePowerUp => Coin <= UnityCatCost - 1;
     bool CanUsePowerUp2 => Coin <= UnityCatCost2 - 1;
@@ -319,6 +333,8 @@
             Coin -= UnityCatCost4;
             unitycatlevel++;
             OnAfterRenderAsync();
+            StopMainsound();
+            PlayWinsound();
             Godmodeactive = false;
         }
     }
@@ -408,7 +424,20 @@
     {
         await JSRuntime.InvokeVoidAsync("playSound", "meowSound");
     }
-
+    private async Task PlayWinsound()
+    {
+        await JSRuntime.InvokeVoidAsync("playSound", "winsound");
+    }
+        private async Task PlayMainsound()
+    {
+        await JSRuntime.InvokeVoidAsync("playSound", "mainsound");
+        Mainmusic = true;
+    }
+    private async Task StopMainsound()
+    {
+        await JSRuntime.InvokeVoidAsync("stopSound", "mainsound");
+        Mainmusic = false;
+    }
 
     //JETI KOODI ALKU
     string? saveName;
@@ -429,7 +458,6 @@
     }
     public string savePath = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot{Path.DirectorySeparatorChar}",
     $"data{Path.DirectorySeparatorChar}");
-
     protected override async Task OnInitializedAsync()
     {
         LoadCoins();
@@ -445,6 +473,7 @@
             filut.Add(Path.GetFileName(files));
         }
     }
+
     public void NewSave()
     {
         string savePath = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot{Path.DirectorySeparatorChar}",

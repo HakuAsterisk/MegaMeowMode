@@ -4,3 +4,10 @@ window.playSound = (elementId) => {
         audio.play();
     }
 };
+window.stopSound = (elementId) => {
+    const audio = document.getElementById(elementId);
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+};
