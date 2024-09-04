@@ -77,13 +77,16 @@
         <img id="switchCat" src="images/cat.png">
         <img id="pressedCat" src="images/cat-pressed.png" style="display: none;">
     </button>
+    <div>
+        <img id="turtle1" src="images/replace.png" height="54" width="54">
+
+    </div>
     <!-- Tässä alla olevassa koodissa on kissan toiminta, eli kun klikataan kissaa, se hakkaa pöytää.
         The code underneath is how the cat works, so when the cat is clicked it taps the table.-->
     <script>
         var clickButton = document.getElementById('switchButton');
         var switchCat = document.getElementById('switchCat');
         var pressedCat = document.getElementById('pressedCat');
-
         // Tämä koodinpätkä vaikuttaa siihen miltä kissa näyttää. NONE tarkoittaa sitä, että "alkuperäinen" kissa häviää
         //ja "block" tarkoittaa sitä, että kissa jolla on tassu alhaalla tulee näkyviin.
         //this bit of code makes it so the cat with its paw up disappears and displays the cat with the paw down
@@ -99,6 +102,7 @@
             switchCat.style.display = "block";
             pressedCat.style.display = "none";
         }
+
         //paavon koodi loppuu 
 
     </script>
@@ -164,6 +168,7 @@
         <button class="btn @GetAutoMiningBronze()" @onclick="StartAutoIncrement" disabled="@CanBuyBronze">
             <img src="images/eye.png" height="160" width="160">
         </button>
+
     }
     else if (level == 1)
     {
@@ -200,6 +205,20 @@
         document.getElementById("switchCat").src = "images/god.png";
         document.getElementById("pressedCat").src = "images/god-pressed.png";
     }
+    window.switchTurtle = () => {
+        document.getElementById("turtle1").src = "images/turtle1.png";
+    }
+    window.switchTurtle1 = () => {
+        document.getElementById("turtle1").src = "images/turtle2.png";
+    }
+    window.switchTurtle2 = () => {
+        document.getElementById("turtle1").src = "images/turtle3.png";
+    }
+
+
+
+
+
 </script>
 
 
@@ -258,23 +277,36 @@
         totalCoin += Click * clickMultiplier;
     }
 
-    protected async Task OnAfterRenderAsync()
+    protected async Task OnAfterRenderAsync(int iscat)
     {
-        if (unitycatlevel == 1)
+        if (unitycatlevel == 1 && iscat == 1)
         {
             await JSRuntime.InvokeVoidAsync("switchCatImages");
         }
-        else if (unitycatlevel == 2)
+        else if (unitycatlevel == 2 && iscat == 1)
         {
             await JSRuntime.InvokeVoidAsync("switchCatImages1");
         }
-        else if (unitycatlevel == 3)
+        else if (unitycatlevel == 3 && iscat == 1)
         {
             await JSRuntime.InvokeVoidAsync("switchCatImages2");
         }
-        else
+        else if (unitycatlevel > 3 && iscat == 1)
         {
             await JSRuntime.InvokeVoidAsync("switchCatImages3");
+        }
+
+        if (level == 1 && iscat == 0)
+        {
+            await JSRuntime.InvokeVoidAsync("switchTurtle");
+        }
+        else if (level == 2 && iscat == 0)
+        {
+            await JSRuntime.InvokeVoidAsync("switchTurtle1");
+        }
+        else if (level > 2 && iscat == 0)
+        {
+            await JSRuntime.InvokeVoidAsync("switchTurtle2");
         }
     }
 
@@ -285,7 +317,7 @@
         {
             Coin -= UnityCatCost;
             unitycatlevel++;
-            OnAfterRenderAsync();
+            OnAfterRenderAsync(1);
             UnityCatCost = Math.Round((UnityCatCost * 1.2));
             Click = 2;
         }
@@ -296,7 +328,7 @@
         {
             Coin -= UnityCatCost2;
             unitycatlevel++;
-            OnAfterRenderAsync();
+            OnAfterRenderAsync(1);
             UnityCatCost2 = Math.Round((UnityCatCost2 * 1.2));
             Click = 5;
         }
@@ -307,7 +339,7 @@
         {
             Coin -= UnityCatCost3;
             unitycatlevel++;
-            OnAfterRenderAsync();
+            OnAfterRenderAsync(1);
             UnityCatCost3 = Math.Round((UnityCatCost3 * 1.2));
             Click = 8;
         }
@@ -318,8 +350,9 @@
         {
             Coin -= UnityCatCost4;
             unitycatlevel++;
-            OnAfterRenderAsync();
+            OnAfterRenderAsync(1);
             Godmodeactive = false;
+            Click = 15;
         }
     }
 
@@ -346,6 +379,7 @@
         {
             autoIncrement = true;
             level += 1;
+            OnAfterRenderAsync(0);
             Coin -= bronzelevel;
             autoclick = 1;
             while (autoIncrement)
@@ -361,6 +395,7 @@
             Coin -= silverlevel;
             autoIncrement = true;
             level += 1;
+            OnAfterRenderAsync(0);
             autoclick = 3;
         }
         else if (Coin >= goldlevel && level == 2)
@@ -368,6 +403,7 @@
             Coin -= goldlevel;
             autoIncrement = true;
             level += 1;
+            OnAfterRenderAsync(0);
             autoclick = 10;
         }
     }
