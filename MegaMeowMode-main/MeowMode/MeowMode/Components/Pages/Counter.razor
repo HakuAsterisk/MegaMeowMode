@@ -1,0 +1,199 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<!-- this displays your amount of Coins -->
+<p role="status">MeowCOIN: @Coin</p>
+
+<!-- This makes the main clicking button for Coins -->
+<button class="image-button" @onclick="IncrementCount">
+    <img src="images/glorp.jpg" alt="Button Image" class="button-image" />
+</button>
+
+<!-- Here is Div class for the upgrade buttons so they go to up right corner and also call some methods for upgrades.
+    you can check the css side from wwwroot/app.css -->
+<div class="button-container">
+    @if (unitycatlevel >= 25 && !unitycatactivate)
+    {
+        <button class="btn btn-primary" @onclick="Powerups">2x Clicks <br>Cost: 10K</button>
+    }
+    @if (unitycatlevel == 0)
+    {
+    <button class="btn @GetPowerUpButtonClass()" @onclick="unitycat" disabled="@CanUsePowerUp">Power-Up @UnityCatCost</button><br>
+    }
+
+    @if (unitycatlevel == 1)
+    {
+    <button class="btn @GetPowerUpButtonClass2()" @onclick="unitycat2" disabled="@CanUsePowerUp2">Power-Up @UnityCatCost2</button><br>
+    }
+
+    @if (unitycatlevel == 2)
+    {
+    <button class="btn @GetPowerUpButtonClass3()" @onclick="unitycat3" disabled="@CanUsePowerUp3">Power-Up @UnityCatCost3</button>
+    }
+    @if (unitycatlevel >= 3)
+    {
+        <button class="btn btn-danger" @onclick="unitycat3" disabled=true>SOLD OUT!</button>
+    }
+
+</div>
+
+<div class="button-container2">
+    @if (level < 1)
+    {
+        <button class="btn @GetAutoMiningBronze()"  @onclick="StartAutoIncrement" disabled="@CanBuyBronze">Bronze level mining <p>Cost = @bronzelevel coins </p>1 coin per seconds</button>
+    }
+    else if(level == 1){
+        <button class="btn @GetAutoMiningSilver()"  @onclick="StartAutoIncrement" disabled="@CanBuySilver">Silver level mining <p>Cost = @silverlevel coins </p>3 coin per seconds</button>
+    }
+    else if(level == 2){
+        <button class="btn @GetAutoMiningGold()"  @onclick="StartAutoIncrement" disabled="@CanBuyGold">Gold level mining <p>Cost = @goldlevel coins </p>10 coin per seconds</button>
+    }
+    else{
+        <button class="btn btn-secondary btn-lg" disabled>You mining 10 coins per second</button>
+    }
+</div>
+
+<!-- Here are all the main methods and code -->
+@code {
+    bool CanUsePowerUp => Coin <= UnityCatCost - 1;
+    bool CanUsePowerUp2 => Coin <= UnityCatCost2 - 1;
+    bool CanUsePowerUp3 => Coin <= UnityCatCost3 - 1;
+
+    bool CanBuyBronze => Coin <= bronzelevel - 1;
+    bool CanBuySilver => Coin <= silverlevel - 1;
+    bool CanBuyGold => Coin <= goldlevel - 1;
+    // auto incres
+    private bool autoIncrement = false;
+
+    //auto score cost
+    private int bronzelevel = 15;
+    private int silverlevel = 40;
+    private int goldlevel = 120;
+    private int level = 0;
+    private int autoclick = 0;
+
+    // double for COINS //
+    private double Coin = 0;
+
+    // double for clicks //
+    private double Click = 1;
+
+    // Here are all of the upgrade costs //
+    private double UnityCatCost = 10;
+    private double UnityCatCost2 = 20;
+    private double UnityCatCost3 = 30;
+
+    //-----------------------------------------//
+    // Here are all the Upgrade levels //
+    private int unitycatlevel = 0;
+
+    // this bool is for the 2x clicks power up, so the button will disapear when clicked/bought ones //
+    private bool unitycatactivate = false;
+
+    // Simple int for the click multiplier //
+    private int clickMultiplier = 1;
+
+    private bool IcanAffordUnitycat = true;
+
+    // Method for how many clicks u get from single click //
+    private void IncrementCount()
+    {
+        Coin += Click * clickMultiplier;
+    }
+
+    // method for the Unity cat upgrade. //
+    private void unitycat()
+    {
+        if (Coin >= UnityCatCost) {
+            Coin -= UnityCatCost;
+            unitycatlevel++;
+            UnityCatCost = Math.Round((UnityCatCost * 1.2));
+            Click = 2;
+        }
+    }
+    private void unitycat2()
+    {
+        if (Coin >= UnityCatCost2) {
+            Coin -= UnityCatCost2;
+            unitycatlevel++;
+            UnityCatCost2 = Math.Round((UnityCatCost2 * 1.2));
+            Click = 5;
+        }
+    }
+    private void unitycat3()
+    {
+        if (Coin >= UnityCatCost3) {
+            Coin -= UnityCatCost3;
+            unitycatlevel++;
+            UnityCatCost3 = Math.Round((UnityCatCost3 * 1.2));
+            Click = 8;
+        }
+    }
+
+    // Method for the 2x power up //
+    private void Powerups() {
+        if (Coin >= 10000) {
+        // here the click multiplier is changed to 2 so it will always give u 2x coins //
+        clickMultiplier = 2;
+        // this is for the powerup button to disapear when bought //
+        unitycatactivate = true;
+        }
+        else {  
+        }
+    }
+
+    //Method for auto add coins
+    private async Task StartAutoIncrement()
+    {
+        if (Coin >= bronzelevel && level < 1){
+            autoIncrement = true;
+            level += 1;
+            Coin -= bronzelevel;
+            autoclick = 1;
+            while (autoIncrement)
+            {
+                Coin += autoclick; // Increment the count
+                StateHasChanged(); // Refresh the UI
+                await Task.Delay(1000); // Wait for 1 second asynchronously
+            }
+        }
+        if(Coin >= silverlevel && level == 1){
+            Coin -= silverlevel;
+            autoIncrement = true;
+            level += 1;
+            autoclick = 3;
+        }
+        else if(Coin >= goldlevel && level == 2){
+            Coin -= goldlevel;
+            autoIncrement = true;
+            level += 1;
+            autoclick = 10;
+        }
+    }
+    private void StopAutoIncrement(){
+        autoIncrement = false; // Stop auto increment
+    }
+    private string GetAutoMiningBronze(){
+        return CanBuyBronze ? "btn-danger" : "btn-success";
+    }
+    private string GetAutoMiningSilver(){
+        return CanBuySilver ? "btn-danger" : "btn-success";
+    }
+    private string GetAutoMiningGold(){
+        return CanBuyGold ? "btn-danger" : "btn-success";
+    }
+
+    private string GetPowerUpButtonClass(){
+        return CanUsePowerUp ? "btn-danger" : "btn-success";
+    }
+    private string GetPowerUpButtonClass2(){
+        return CanUsePowerUp2 ? "btn-danger" : "btn-success";
+    }
+    private string GetPowerUpButtonClass3(){
+        return CanUsePowerUp3 ? "btn-danger" : "btn-success";
+    }
+}
