@@ -53,9 +53,20 @@ h1:focus {
 .button-container {
     position: absolute; /* Fixed position to stay in the corner even when scrolling */
     top: 100px;       /* Adjust the top spacing as needed */
-    right: 10px;     /* Adjust the right spacing as needed */
+    right: 10px;      /* Adjust the right spacing as needed */
     display: flex;
-    gap: 10px;       /* Space between the buttons */
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.02px;     /* Space between the buttons */
+    padding: 0.2px;
+}
+
+
+.button-container2 {
+    position: absolute; /* Fixed position to stay in the corner even when scrolling */
+    top: 100px;       /* Adjust the top spacing as needed */
+    right: 230px;     /* Adjust the right spacing as needed */
+    display: flex;
+    gap: 1px;       /* Space between the buttons */
 }
 
 .btn {
