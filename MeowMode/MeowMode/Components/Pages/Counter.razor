@@ -21,9 +21,14 @@
         <button class="btn btn-primary" @onclick="Powerups">2x Clicks <br>Cost: 10K</button>
     }
 
-    <button id = "Unitycatlevelbutton" class="btn btn-danger" @onclick="unitycat">Coin: @UnityCatCost <br> Level: @unitycatlevel</button>
+    <!--button id = "Unitycatlevelbutton" class="btn btn-danger" @onclick="unitycat">Coin: @UnityCatCost <br> Level: @unitycatlevel</button>-->
+    <button class="btn @GetPowerUpButtonClass()" @onclick="unitycat" disabled="@CanUsePowerUp">Power-Up @UnityCatCost</button><br>
+    <button class="btn @GetPowerUpButtonClass2()" @onclick="unitycat2" disabled="@CanUsePowerUp2">Power-Up @UnityCatCost2</button><br>
+    <button class="btn @GetPowerUpButtonClass3()" @onclick="unitycat3" disabled="@CanUsePowerUp3">Power-Up @UnityCatCost3</button>
+
 </div>
-<div class="button-container">
+
+<div class="button-container2">
     @if (auto_click < 1)
     {
         <button class="btn btn-primary" @onclick="StartAutoIncrement">Auto mining <p>Cost = @Auto_mining counts</p></button>
@@ -35,6 +40,10 @@
 
 <!-- Here are all the main methods and code -->
 @code {
+    bool CanUsePowerUp => Coin <= UnityCatCost - 1;
+    bool CanUsePowerUp2 => Coin <= UnityCatCost2 - 1;
+    bool CanUsePowerUp3 => Coin <= UnityCatCost3 - 1;
+
     // auto incres
     private bool autoIncrement = false;
 
@@ -53,6 +62,8 @@
 
     // Here are all of the upgrade costs //
     private double UnityCatCost = 10;
+    private double UnityCatCost2 = 20;
+    private double UnityCatCost3 = 30;
 
     //-----------------------------------------//
     // Here are all the Upgrade levels //
@@ -78,7 +89,22 @@
         if (Coin >= UnityCatCost) {
             Coin -= UnityCatCost;
             UnityCatCost = Math.Round((UnityCatCost * 1.2));
-            unitycatlevel++;
+            Click++;
+        }
+    }
+        private void unitycat2()
+    {
+        if (Coin >= UnityCatCost2) {
+            Coin -= UnityCatCost2;
+            UnityCatCost2 = Math.Round((UnityCatCost2 * 1.2));
+            Click++;
+        }
+    }
+        private void unitycat3()
+    {
+        if (Coin >= UnityCatCost3) {
+            Coin -= UnityCatCost3;
+            UnityCatCost3 = Math.Round((UnityCatCost3 * 1.2));
             Click++;
         }
     }
@@ -121,5 +147,18 @@
     private void StopAutoIncrement()
     {
         autoIncrement = false; // Stop auto increment
+    }
+
+        private string GetPowerUpButtonClass()
+    {
+        return CanUsePowerUp ? "btn-danger" : "btn-success";
+    }
+            private string GetPowerUpButtonClass2()
+    {
+        return CanUsePowerUp2 ? "btn-danger" : "btn-success";
+    }
+            private string GetPowerUpButtonClass3()
+    {
+        return CanUsePowerUp3 ? "btn-danger" : "btn-success";
     }
 }

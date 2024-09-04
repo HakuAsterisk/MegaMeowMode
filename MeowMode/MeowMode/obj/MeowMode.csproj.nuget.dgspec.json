@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\MeowMode.csproj": {}
+    "C:\\Users\\Olli\\Desktop\\git-clones\\MegaMeowMode\\MeowMode\\MeowMode\\MeowMode.csproj": {}
   },
   "projects": {
-    "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\MeowMode.csproj": {
+    "C:\\Users\\Olli\\Desktop\\git-clones\\MegaMeowMode\\MeowMode\\MeowMode\\MeowMode.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\MeowMode.csproj",
+        "projectUniqueName": "C:\\Users\\Olli\\Desktop\\git-clones\\MegaMeowMode\\MeowMode\\MeowMode\\MeowMode.csproj",
         "projectName": "MeowMode",
-        "projectPath": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\MeowMode.csproj",
-        "packagesPath": "C:\\Users\\35844\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\35844\\Desktop\\MeowMode\\MeowMode\\obj\\",
+        "projectPath": "C:\\Users\\Olli\\Desktop\\git-clones\\MegaMeowMode\\MeowMode\\MeowMode\\MeowMode.csproj",
+        "packagesPath": "C:\\Users\\Olli\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Olli\\Desktop\\git-clones\\MegaMeowMode\\MeowMode\\MeowMode\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\35844\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Olli\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
