@@ -504,7 +504,7 @@
     }
     private async Task PlayWinsound()
     {
-        await JSRuntime.InvokeVoidAsync("playSound", "winsound");
+        await JSRuntime.InvokeVoidAsync("playSound", "winsound", 0.7);
     }
     private async Task PlayMainsound()
     {
