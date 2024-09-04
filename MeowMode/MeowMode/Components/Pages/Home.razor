@@ -3,87 +3,212 @@
 @inject IJSRuntime JSRuntime
 <!--JETI KOODI ALKAA-->
 <script src="js/site.js"></script>
-<style>
-    #saveDiv {
-        display: none;
-    }
-</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <PageTitle>Home</PageTitle>
-<div class="m-4">
-    <button class="btn btn-info" id="saveButton" style="height: 58px;"><img id="saveimage"
-            src="images/saves.png"></button>
-    <p>@alert</p>
-</div>
-
-<div id="saveDiv">
-    <button id="close" class="btn btn-danger">X</button>
-    <button class="btn btn-info" @onclick="NewSave" style="color: rgb(245, 245, 245);">New Save</button>
-    <input type="text" @bind="saveName" placeholder="Name your save" /><br>
-
-    @if (@filut.Count == 0)
-    {
-        <p><em>No saves available</em></p>
-    }
-    else
-    {
-        <table style="width: 100px;" class="table table-sm text-center">
-            <thead>
-                <tr>
-                    <th colspan="4">Saves</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var saves in filut)
-                {
-                    <tr>
-                        <td style="padding-top: 7px;">@saves</td>
-                        <td><button @onclick="() => SaveData(saves)" class="btn-sm btn-primary popup">Save</button></td>
-                        <td><button @onclick="() => LoadData(saves)" class="btn-sm btn-success popup">Load</button></td>
-                        <td><button @onclick="() => DeleteData(saves)" class="btn-sm btn-danger popup">Delete</button></td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-</div>
-
-<script>
-    $(document).ready(function () {
-        $("#saveButton").click(function () {
-            $("#saveDiv").show(1000);
-        });
-
-        $("#close").click(function () {
-            $("#saveDiv").hide(1000);
-        });
-    });
-</script>
-
+<style>
+#saveDiv {
+    display: none;
+    width: 300px;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+.container-sm{
+        max-width: 370px;
+}
+.container-md{
+        max-width: 1000px;
+}
+#turtle1{
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+}
+</style>
 <audio id="meowSound" src="sounds/meow.wav"></audio>
+<audio id="winsound" src="sounds/winmusic.wav"></audio>
+<audio id="mainsound" src="sounds/mainmusic.wav"></audio>
+<audio id="deepmeow" src="sounds/wau.wav"></audio>
+<audio id="newmeow" src="sounds/meuw.wav"></audio>
 
-<button class="btn btn-primary" @onclick="PlayMeow">Play Meow</button>
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-4">
+            <button class="btn btn-info" id="saveButton" style="height: 58px;">
+                <img id="saveimage" src="images/saves.png">
+            </button>
+            <p style="margin-bottom: 0px;">@alert</p>
+            <div id="saveDiv" class="z-3 position-absolute border border-dark-1 rounded">
+                <button id="close" class="btn btn-danger">X</button>
+                <button class="btn btn-info" @onclick="NewSave" style="color: rgb(245, 245, 245);">New Save</button>
+                <input class="mt-2" type="text" @bind="saveName" placeholder="Name your save" /><br>
+
+                @if (@filut.Count == 0)
+                {
+                    <p><em>No saves available</em></p>
+                }
+                else
+                {
+                    <table style="width: 100px;" class="table table-sm text-center">
+                        <thead>
+                            <tr>
+                                <th colspan="4">Saves</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var saves in filut)
+                            {
+                                <tr>
+                                    <td style="padding-top: 7px;">@saves</td>
+                                    <td><button @onclick="() => SaveData(saves)" class="btn-sm btn-primary popup">Save</button></td>
+                                    <td><button @onclick="() => LoadData(saves)" class="btn-sm btn-success popup">Load</button></td>
+                                    <td><button @onclick="() => DeleteData(saves)" class="btn-sm btn-danger popup">Delete</button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+        <div class="col-4 text-center">
+            <h1>MEGAMEOWMODE!!!!</h1>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+<div class="container-sm mx-0 float-end">
+    <div class="row justify-content-end">
+        <div class="col-12 text-end">
+        @if (Mainmusic == false)
+        {
+        <button class="btn btn-danger" @onclick="PlayMainsound">♪</button>
+        }
+        @if (Mainmusic == true)
+        {
+            <button class="btn btn-success" @onclick="StopMainsound">♪</button>
+        }
+        <button style="margin-left: 20px;" class="btn btn-danger" @onclick="Reset">Reset!</button>
+        <button style="margin-left: 15px; margin-right: 5px;" class="btn btn-primary" @onclick="PlayMeow">Meow!</button>
+        </div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-12 mt-2 text-end">
+            @if (Unitycatlevel >= 25 && !unitycatactivate)
+            {
+                <button @onclick="Powerups">
+                </button>
+            }
+            @if (Unitycatlevel == 0)
+            {
+                <button style="width: 232px; height: 242px;" class="btn @GetPowerUpButtonClass()" @onclick="unitycat"  disabled="@CanUsePowerUp">
+                    <h4><span class="badge">Equip your cat<br>With a bronze crown!</span></h4>
+                    <img src="images/copper.png">
+                    <h4><span class="badge">@UnityCatCost coins!</span></h4>
+                </button>
+                <br>
+            }
+
+            @if (Unitycatlevel == 1)
+            {
+                <button style="width: 232px; height: 242px;" class="btn @GetPowerUpButtonClass2()" @onclick="unitycat2" disabled="@CanUsePowerUp2">
+                    <h4><span class="badge">Equip your cat<br>With a silver crown!</span></h4>
+                    <img src="images/silver.png">
+                    <h4><span class="badge">@UnityCatCost2 coins!</span></h4>
+                </button>
+
+                <br>
+            }
+
+            @if (Unitycatlevel == 2)
+            {
+                <button style="width: 232px; height: 242px;" class="btn @GetPowerUpButtonClass3()" @onclick="unitycat3" disabled="@CanUsePowerUp3">
+                    <h4><span class="badge">Equip your cat<br>With a golden crown!</span></h4>
+                    <img src="images/gold.png">
+                    <h4><span class="badge">@UnityCatCost3 coins!</span></h4>
+                </button>
+            }
+            @if (Unitycatlevel >= 3)
+            {
+                <button class="btn btn-danger" @onclick="unitycat3" disabled=true>Multiclick: SOLD OUT!</button>
+            }
+            @if (Unitycatlevel >= 4)
+            {
+                <button class="btn btn-danger mt-2" @onclick="unitycat4" disabled=true>Godhood: Achieved</button>
+            }
+
+        </div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-12 mt-2 text-end">
+            @if (Level < 1)
+            {
+                <button style="width: 232px; height: 242px;" class="btn @GetAutoMiningBronze()" @onclick="StartAutoIncrement" disabled="@CanBuyBronze">
+                    <h4><span class="badge">Create a helper<br>With... THE EYE!</span></h4>
+                    <img src="images/eye.png" height="130" width="130">
+                    <h4><span class="badge">@bronzelevel coins!</span></h4>
+                </button>
+
+            }
+            else if (Level == 1)
+            {
+                <button style="width: 232px; height: 242px;" class="btn @GetAutoMiningSilver()" @onclick="StartAutoIncrement" disabled="@CanBuySilver">
+                    <h4><span class="badge">Equip your pardner<br>With a hat!<br>(and another eye)</span></h4>
+                    <img src="images/hat.png" height="130" width="130">
+                    <h4><span class="badge">@silverlevel coins!</span></h4>
+                </button>
+            }
+            else if (Level == 2)
+            {
+                <button style="width: 232px; height: 242px;" class="btn @GetAutoMiningGold()" @onclick="StartAutoIncrement" disabled="@CanBuyGold">
+                    <h4><span class="badge">Instill in your helper<br>...FURY!</span></h4>
+                    <img src="images/fire.png" height="130" width="130">
+                    <h4><span class="badge">@goldlevel coins!</span></h4>
+                </button>
+            }
+            else if (Level >= 3)
+            {
+                <button class="btn btn-danger" disabled="true">Turtles: SOLD OUT!</button>
+            }
+        </div>
+    </div>
+</div>
 
 <!--JETI KOODI LOPPUU-->
 
 <!-- paavon koodi alkaa -->
-
-<h1>MEGAMEOWMODE!!!!</h1>
-
 <!-- Alla oleva koodi on pelissä oleva kissa -nappi. Se toimii javalla
         The code underneath is the cat button. It runs on java-->
-<div>
-    <button id="switchButton" @onclick="IncrementCount" style="border: 0; background-color: transparent;">
-        <img id="switchCat" src="images/cat.png">
-        <img id="pressedCat" src="images/cat-pressed.png" style="display: none;">
-    </button>
-    <div>
-        <img id="turtle1" src="images/replace.png" height="54" width="54">
-
+<div class="container-md float-end">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <button id="switchButton" @onclick="IncrementCount" style="height: 189px; width: 306px; border: 0; background-color: transparent;">
+            <img id="switchCat" src="images/cat.png">
+            <img id="pressedCat" src="images/cat-pressed.png" style="display: none;">
+            </button>
+        </div>
+        <div class="col-2"></div>
     </div>
+
+    <div class="row justify-content-center pt-2">
+            <div style="width: 210px;" class="col-3 px-0"><h3 style="padding-top: 40px;">Current Helper: </h3><h3>Coins: @Coin</h3></div>
+        <div style="width: 150px;" class="col-2 px-0">
+            <img id="turtle1" src="images/replace.png" height="150" width="150">
+        </div>
+        <div class="col-3 px-5">
+        @if (Godmodeactive == true)
+        {
+            <button style="width: 150px; height: 150px;" class="btn @GetPowerUpButtonClass4()" @onclick="unitycat4" disabled="@CanUsePowerUp4">
+                <h5>MAKE.<br>YOUR CAT.<br>GOD!<br>@UnityCatCost4 coins :)</h5>
+            </button>
+        }
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
     <!-- Tässä alla olevassa koodissa on kissan toiminta, eli kun klikataan kissaa, se hakkaa pöytää.
         The code underneath is how the cat works, so when the cat is clicked it taps the table.-->
-    <script>
+
+<script>
         var clickButton = document.getElementById('switchButton');
         var switchCat = document.getElementById('switchCat');
         var pressedCat = document.getElementById('pressedCat');
@@ -105,89 +230,18 @@
 
         //paavon koodi loppuu 
 
-    </script>
-    <div>
-        @if (Godmodeactive == true)
-        {
-            <button class="btn @GetPowerUpButtonClass4()" @onclick="unitycat4" disabled="@CanUsePowerUp4">
-                <p>Unlock</p>
-                <p>godmode.</p>
-            </button>
-        }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#saveButton").click(function () {
+            $("#saveDiv").show(1000);
+        });
 
-    </div>
-
-    <h2>Coins: @Coin</h2>
-    <h2>Total coins: @totalCoin</h2>
-</div>
-
-<div class="button-container">
-    @if (unitycatlevel >= 25 && !unitycatactivate)
-    {
-        <button @onclick="Powerups">
-        </button>
-    }
-    @if (unitycatlevel == 0)
-    {
-        <button class="btn @GetPowerUpButtonClass()" @onclick="unitycat" disabled="@CanUsePowerUp">
-            <img src="images/copper.png">
-        </button>
-        <br>
-    }
-
-    @if (unitycatlevel == 1)
-    {
-        <button class="btn @GetPowerUpButtonClass2()" @onclick="unitycat2" disabled="@CanUsePowerUp2">
-            <img src="images/silver.png">
-        </button>
-
-        <br>
-    }
-
-    @if (unitycatlevel == 2)
-    {
-        <button class="btn @GetPowerUpButtonClass3()" @onclick="unitycat3" disabled="@CanUsePowerUp3">
-            <img src="images/gold.png">
-        </button>
-    }
-    @if (unitycatlevel >= 3)
-    {
-        <button class="btn btn-danger" @onclick="unitycat3" disabled=true>Multiclick: SOLD OUT!</button>
-    }
-    @if (unitycatlevel >= 4)
-    {
-        <button class="btn btn-danger" @onclick="unitycat4" disabled=true>Godmode</button>
-    }
-
-</div>
-
-
-<div class="button-container2">
-    @if (level < 1)
-    {
-        <button class="btn @GetAutoMiningBronze()" @onclick="StartAutoIncrement" disabled="@CanBuyBronze">
-            <img src="images/eye.png" height="160" width="160">
-        </button>
-
-    }
-    else if (level == 1)
-    {
-        <button class="btn @GetAutoMiningSilver()" @onclick="StartAutoIncrement" disabled="@CanBuySilver">
-            <img src="images/hat.png" height="160" width="160">
-        </button>
-    }
-    else if (level == 2)
-    {
-        <button class="btn @GetAutoMiningGold()" @onclick="StartAutoIncrement" disabled="@CanBuyGold">
-            <img src="images/fire.png" height="160" width="160">
-        </button>
-    }
-    else if (level >= 3)
-    {
-        <button class="btn btn-danger" disabled="true">Turtles: SOLD OUT!</button>
-    }
-</div>
-
+        $("#close").click(function () {
+            $("#saveDiv").hide(1000);
+        });
+    });
+</script>
 <script>
     window.switchCatImages = () => {
         document.getElementById("switchCat").src = "images/catbronze.png";
@@ -212,19 +266,13 @@
         document.getElementById("turtle1").src = "images/turtle2.png";
     }
     window.switchTurtle2 = () => {
-        document.getElementById("turtle1").src = "images/turtle3.png";
+        document.getElementById("turtle1").src = "images/turtle4.png";
     }
-
-
-
-
-
 </script>
-
-
 
 @code {
 
+    bool Mainmusic = false;
     bool Godmodeactive = true;
     bool CanUsePowerUp => Coin <= UnityCatCost - 1;
     bool CanUsePowerUp2 => Coin <= UnityCatCost2 - 1;
@@ -238,29 +286,27 @@
     private bool autoIncrement = false;
 
     //auto score cost
-    private int bronzelevel = 15;
-    private int silverlevel = 40;
-    private int goldlevel = 120;
-    private int level = 0;
+    private int bronzelevel = 25;
+    private int silverlevel = 80;
+    private int goldlevel = 300;
+    private int Level = 0;
     private int autoclick = 0;
 
     // double for COINS //
     private double Coin = 0;
 
-    public double totalCoin = 0;
-
     // double for clicks //
     private double Click = 1;
 
     // Here are all of the upgrade costs //
-    private double UnityCatCost = 10;
-    private double UnityCatCost2 = 20;
-    private double UnityCatCost3 = 30;
-    private double UnityCatCost4 = 500;
+    private double UnityCatCost = 20;
+    private double UnityCatCost2 = 100;
+    private double UnityCatCost3 = 250;
+    private double UnityCatCost4 = 1000;
 
     //-----------------------------------------//
     // Here are all the Upgrade levels //
-    private int unitycatlevel = 0;
+    private int Unitycatlevel = 0;
 
     // this bool is for the 2x clicks power up, so the button will disapear when clicked/bought ones //
     private bool unitycatactivate = false;
@@ -274,37 +320,36 @@
     private void IncrementCount()
     {
         Coin += Click * clickMultiplier;
-        totalCoin += Click * clickMultiplier;
     }
 
     protected async Task OnAfterRenderAsync(int iscat)
     {
-        if (unitycatlevel == 1 && iscat == 1)
+        if (Unitycatlevel == 1 && iscat == 1)
         {
             await JSRuntime.InvokeVoidAsync("switchCatImages");
         }
-        else if (unitycatlevel == 2 && iscat == 1)
+        else if (Unitycatlevel == 2 && iscat == 1)
         {
             await JSRuntime.InvokeVoidAsync("switchCatImages1");
         }
-        else if (unitycatlevel == 3 && iscat == 1)
+        else if (Unitycatlevel == 3 && iscat == 1)
         {
             await JSRuntime.InvokeVoidAsync("switchCatImages2");
         }
-        else if (unitycatlevel > 3 && iscat == 1)
+        else if (Unitycatlevel > 3 && iscat == 1)
         {
             await JSRuntime.InvokeVoidAsync("switchCatImages3");
         }
 
-        if (level == 1 && iscat == 0)
+        if (Level == 1 && iscat == 0)
         {
             await JSRuntime.InvokeVoidAsync("switchTurtle");
         }
-        else if (level == 2 && iscat == 0)
+        else if (Level == 2 && iscat == 0)
         {
             await JSRuntime.InvokeVoidAsync("switchTurtle1");
         }
-        else if (level > 2 && iscat == 0)
+        else if (Level > 2 && iscat == 0)
         {
             await JSRuntime.InvokeVoidAsync("switchTurtle2");
         }
@@ -316,10 +361,11 @@
         if (Coin >= UnityCatCost)
         {
             Coin -= UnityCatCost;
-            unitycatlevel++;
+            Unitycatlevel++;
             OnAfterRenderAsync(1);
             UnityCatCost = Math.Round((UnityCatCost * 1.2));
             Click = 2;
+            PlayMeow();
         }
     }
     private void unitycat2()
@@ -327,10 +373,11 @@
         if (Coin >= UnityCatCost2)
         {
             Coin -= UnityCatCost2;
-            unitycatlevel++;
+            Unitycatlevel++;
             OnAfterRenderAsync(1);
             UnityCatCost2 = Math.Round((UnityCatCost2 * 1.2));
             Click = 5;
+            PlayMeuw();
         }
     }
     private void unitycat3()
@@ -338,10 +385,11 @@
         if (Coin >= UnityCatCost3)
         {
             Coin -= UnityCatCost3;
-            unitycatlevel++;
+            Unitycatlevel++;
             OnAfterRenderAsync(1);
             UnityCatCost3 = Math.Round((UnityCatCost3 * 1.2));
             Click = 8;
+            PlayMeuw();
         }
     }
     private void unitycat4()
@@ -349,10 +397,13 @@
         if (Coin >= UnityCatCost4)
         {
             Coin -= UnityCatCost4;
-            unitycatlevel++;
+            Unitycatlevel++;
             OnAfterRenderAsync(1);
+            StopMainsound();
+            PlayWinsound();
             Godmodeactive = false;
             Click = 15;
+            PlayWau();
         }
     }
 
@@ -375,34 +426,33 @@
     //Method for auto add coins
     private async Task StartAutoIncrement()
     {
-        if (Coin >= bronzelevel && level < 1)
+        if (Coin >= bronzelevel && Level < 1)
         {
             autoIncrement = true;
-            level += 1;
+            Level += 1;
             OnAfterRenderAsync(0);
             Coin -= bronzelevel;
             autoclick = 1;
             while (autoIncrement)
             {
                 Coin += autoclick; // Increment the count
-                totalCoin += autoclick;
                 StateHasChanged(); // Refresh the UI
                 await Task.Delay(1000); // Wait for 1 second asynchronously
             }
         }
-        if (Coin >= silverlevel && level == 1)
+        if (Coin >= silverlevel && Level == 1)
         {
             Coin -= silverlevel;
             autoIncrement = true;
-            level += 1;
+            Level += 1;
             OnAfterRenderAsync(0);
             autoclick = 3;
         }
-        else if (Coin >= goldlevel && level == 2)
+        else if (Coin >= goldlevel && Level == 2)
         {
             Coin -= goldlevel;
             autoIncrement = true;
-            level += 1;
+            Level += 1;
             OnAfterRenderAsync(0);
             autoclick = 10;
         }
@@ -444,23 +494,42 @@
     {
         await JSRuntime.InvokeVoidAsync("playSound", "meowSound");
     }
+    private async Task PlayWau()
+    {
+        await JSRuntime.InvokeVoidAsync("playSound", "deepmeow");
+    }
+    private async Task PlayMeuw()
+    {
+        await JSRuntime.InvokeVoidAsync("playSound", "newmeow");
+    }
+    private async Task PlayWinsound()
+    {
+        await JSRuntime.InvokeVoidAsync("playSound", "winsound", 0.7);
+    }
+    private async Task PlayMainsound()
+    {
+        await JSRuntime.InvokeVoidAsync("playSound", "mainsound", 0.1);
+        Mainmusic = true;
+    }
+    private async Task StopMainsound()
+    {
+        await JSRuntime.InvokeVoidAsync("stopSound", "mainsound");
+        Mainmusic = false;
+    }
 
 
     //JETI KOODI ALKU
     string? saveName;
     public string? alert = "";
     List<string> filut = new List<string>();
-    List<string> splitFilut = new List<string>();
 
     public class Data
     {
         public double Coin { get; set; }
-        public string Name { get; set; }
 
-        public Data(double coin, string name)
+        public Data(double coin)
         {
             Coin = coin;
-            Name = name;
         }
     }
     public string savePath = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot{Path.DirectorySeparatorChar}",
@@ -486,7 +555,7 @@
         string savePath = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot{Path.DirectorySeparatorChar}",
         $"data{Path.DirectorySeparatorChar}");
         string newDir = Path.Combine(savePath, $"{saveName}.json");
-        var data = new Data(totalCoin, saveName);
+        var data = new Data(Coin);
         if (NameCheck(newDir))
         {
             if (WriteJson(newDir, data))
@@ -504,12 +573,11 @@
     public void SaveData(string fileName)
     {
         string targetSave = Path.Combine(savePath, fileName);
-        var data = new Data(totalCoin, saveName);
+        var data = new Data(Coin);
         alert = "Game saved!";
         SaveCoins();
         SaveAlert();
         WriteJson(targetSave, data);
-        StateHasChanged();
     }
 
     public void LoadData(string fileName)
@@ -535,8 +603,9 @@
 
     private async Task Reset()
     {
-        totalCoin = 0;
         Coin = 0;
+        Level = 0;
+        Unitycatlevel = 0;
         await JSRuntime.InvokeVoidAsync("localStorage.setItem", "coin", Coin.ToString());
         StateHasChanged();
     }
@@ -547,14 +616,15 @@
     private async Task LoadCoins()
     {
         var coinValue = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "coin");
-        if (int.TryParse(coinValue, out int parsedValue))
+        if (double.TryParse(coinValue, out double parsedValue))
         {
-            totalCoin = parsedValue;
+            Coin = parsedValue;
         }
     }
     private async Task SaveAlert()
     {
         await JSRuntime.InvokeVoidAsync("localStorage.setItem", "alert", alert);
+        StateHasChanged();
     }
     private async Task LoadAlert()
     {
