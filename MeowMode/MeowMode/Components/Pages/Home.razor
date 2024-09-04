@@ -48,6 +48,15 @@
     }
 </div>
 
+@if (Mainmusic == false)
+{
+<button class="btn btn-danger" @onclick="PlayMainsound">♪</button>
+}
+@if (Mainmusic == true)
+{
+    <button class="btn btn-success" @onclick="StopMainsound">♪</button>
+}
+
 <script>
     $(document).ready(function () {
         $("#saveButton").click(function () {
@@ -61,6 +70,8 @@
 </script>
 
 <audio id="meowSound" src="sounds/meow.wav"></audio>
+<audio id="winsound" src="sounds/winmusic.wav"></audio>
+<audio id="mainsound" src="sounds/mainmusic.wav"></audio>
 
 <button class="btn btn-primary" @onclick="PlayMeow">Play Meow</button>
 
@@ -225,6 +236,7 @@
 
 @code {
 
+    bool Mainmusic = false;
     bool Godmodeactive = true;
     bool CanUsePowerUp => Coin <= UnityCatCost - 1;
     bool CanUsePowerUp2 => Coin <= UnityCatCost2 - 1;
@@ -351,6 +363,8 @@
             Coin -= UnityCatCost4;
             unitycatlevel++;
             OnAfterRenderAsync(1);
+            StopMainsound();
+            PlayWinsound();
             Godmodeactive = false;
             Click = 15;
         }
@@ -443,6 +457,20 @@
     private async Task PlayMeow()
     {
         await JSRuntime.InvokeVoidAsync("playSound", "meowSound");
+    }
+        private async Task PlayWinsound()
+    {
+        await JSRuntime.InvokeVoidAsync("playSound", "winsound");
+    }
+        private async Task PlayMainsound()
+    {
+        await JSRuntime.InvokeVoidAsync("playSound", "mainsound");
+        Mainmusic = true;
+    }
+    private async Task StopMainsound()
+    {
+        await JSRuntime.InvokeVoidAsync("stopSound", "mainsound");
+        Mainmusic = false;
     }
 
 
