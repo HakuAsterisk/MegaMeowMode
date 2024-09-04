@@ -87,8 +87,8 @@
         {
             <button class="btn btn-success" @onclick="StopMainsound">♪</button>
         }
-        <button style="margin-left: 5px;" class="btn btn-danger" @onclick="Reset">Reset!</button>
-        <button class="btn btn-primary" @onclick="PlayMeow">Meow!</button>
+        <button style="margin-left: 20px;" class="btn btn-danger" @onclick="Reset">Reset!</button>
+        <button style="margin-left: 15px; margin-right: 5px;" class="btn btn-primary" @onclick="PlayMeow">Meow!</button>
         </div>
     </div>
     <div class="row justify-content-end">
@@ -100,7 +100,7 @@
             }
             @if (Unitycatlevel == 0)
             {
-                <button class="btn @GetPowerUpButtonClass()" @onclick="unitycat"  disabled="@CanUsePowerUp">
+                <button style="width: 232px; height: 242px;" class="btn @GetPowerUpButtonClass()" @onclick="unitycat"  disabled="@CanUsePowerUp">
                     <h4><span class="badge">Equip your cat<br>With a bronze crown!</span></h4>
                     <img src="images/copper.png">
                     <h4><span class="badge">@UnityCatCost coins!</span></h4>
@@ -110,7 +110,7 @@
 
             @if (Unitycatlevel == 1)
             {
-                <button class="btn @GetPowerUpButtonClass2()" @onclick="unitycat2" disabled="@CanUsePowerUp2">
+                <button style="width: 232px; height: 242px;" class="btn @GetPowerUpButtonClass2()" @onclick="unitycat2" disabled="@CanUsePowerUp2">
                     <h4><span class="badge">Equip your cat<br>With a silver crown!</span></h4>
                     <img src="images/silver.png">
                     <h4><span class="badge">@UnityCatCost2 coins!</span></h4>
@@ -121,7 +121,7 @@
 
             @if (Unitycatlevel == 2)
             {
-                <button class="btn @GetPowerUpButtonClass3()" @onclick="unitycat3" disabled="@CanUsePowerUp3">
+                <button style="width: 232px; height: 242px;" class="btn @GetPowerUpButtonClass3()" @onclick="unitycat3" disabled="@CanUsePowerUp3">
                     <h4><span class="badge">Equip your cat<br>With a golden crown!</span></h4>
                     <img src="images/gold.png">
                     <h4><span class="badge">@UnityCatCost3 coins!</span></h4>
@@ -142,26 +142,26 @@
         <div class="col-12 mt-2 text-end">
             @if (Level < 1)
             {
-                <button class="btn @GetAutoMiningBronze()" @onclick="StartAutoIncrement" disabled="@CanBuyBronze">
+                <button style="width: 232px; height: 242px;" class="btn @GetAutoMiningBronze()" @onclick="StartAutoIncrement" disabled="@CanBuyBronze">
                     <h4><span class="badge">Create a helper<br>With... THE EYE!</span></h4>
-                    <img src="images/eye.png" height="160" width="160">
+                    <img src="images/eye.png" height="130" width="130">
                     <h4><span class="badge">@bronzelevel coins!</span></h4>
                 </button>
 
             }
             else if (Level == 1)
             {
-                <button class="btn @GetAutoMiningSilver()" @onclick="StartAutoIncrement" disabled="@CanBuySilver">
+                <button style="width: 232px; height: 242px;" class="btn @GetAutoMiningSilver()" @onclick="StartAutoIncrement" disabled="@CanBuySilver">
                     <h4><span class="badge">Equip your pardner<br>With a hat!<br>(and another eye)</span></h4>
-                    <img src="images/hat.png" height="160" width="160">
+                    <img src="images/hat.png" height="130" width="130">
                     <h4><span class="badge">@silverlevel coins!</span></h4>
                 </button>
             }
             else if (Level == 2)
             {
-                <button class="btn @GetAutoMiningGold()" @onclick="StartAutoIncrement" disabled="@CanBuyGold">
+                <button style="width: 232px; height: 242px;" class="btn @GetAutoMiningGold()" @onclick="StartAutoIncrement" disabled="@CanBuyGold">
                     <h4><span class="badge">Instill in your helper<br>...FURY!</span></h4>
-                    <img src="images/fire.png" height="160" width="160">
+                    <img src="images/fire.png" height="130" width="130">
                     <h4><span class="badge">@goldlevel coins!</span></h4>
                 </button>
             }
