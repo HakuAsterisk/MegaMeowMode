@@ -478,16 +478,15 @@
     string? saveName;
     public string? alert = "";
     List<string> filut = new List<string>();
-    List<string> splitFilut = new List<string>();
 
     public class Data
     {
-        public double Coin { get; set; }
+        public double totalCoin { get; set; }
         public string Name { get; set; }
 
-        public Data(double coin, string name)
+        public Data(double totalcoin, string name)
         {
-            Coin = coin;
+            totalCoin = totalcoin;
             Name = name;
         }
     }
@@ -537,7 +536,6 @@
         SaveCoins();
         SaveAlert();
         WriteJson(targetSave, data);
-        StateHasChanged();
     }
 
     public void LoadData(string fileName)
@@ -545,7 +543,7 @@
         string targetSave = Path.Combine(savePath, fileName);
         string saveContent = File.ReadAllText(targetSave);
         Data saveData = JsonSerializer.Deserialize<Data>(saveContent);
-        Coin = saveData.Coin;
+        Coin = saveData.totalCoin;
         alert = "Game Loaded!";
         SaveCoins();
         SaveAlert();
@@ -565,24 +563,26 @@
     {
         totalCoin = 0;
         Coin = 0;
+        await JSRuntime.InvokeVoidAsync("localStorage.setItem", "totalcoin", totalCoin.ToString());
         await JSRuntime.InvokeVoidAsync("localStorage.setItem", "coin", Coin.ToString());
         StateHasChanged();
     }
     private async Task SaveCoins()
     {
-        await JSRuntime.InvokeVoidAsync("localStorage.setItem", "coin", Coin.ToString());
+        await JSRuntime.InvokeVoidAsync("localStorage.setItem", "totalcoin", totalCoin.ToString());
     }
     private async Task LoadCoins()
     {
-        var coinValue = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "coin");
-        if (int.TryParse(coinValue, out int parsedValue))
+        var coinValue = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "totalcoin");
+        if (double.TryParse(coinValue, out double parsedValue))
         {
-            totalCoin = parsedValue;
+            Coin = parsedValue;
         }
     }
     private async Task SaveAlert()
     {
         await JSRuntime.InvokeVoidAsync("localStorage.setItem", "alert", alert);
+        StateHasChanged();
     }
     private async Task LoadAlert()
     {
